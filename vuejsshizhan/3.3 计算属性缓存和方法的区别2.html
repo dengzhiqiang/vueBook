@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3.3 计算属性缓存和方法的区别2</title>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1>名称是 ：{{ cNow }}</h1>
+    <h1>名称是 ：{{ mNow() }}</h1>
+
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'deng',
+            lastName: 'zhiqiang'
+        },
+        methods: {
+            mNow: function () {
+                return Date.now();
+            }
+        },
+        computed: {
+            cNow: function () {
+                return Date.now();
+            }
+        }
+    });
+
+    // 没有使用计算属性，在 methods 里定义了一个方法实现了相同的效果，甚至该方法还可以接受
+    // 参数，使用起来更灵活。既然使用 methods 就可以实现，那么为什么还需要计算属性呢？原因就是
+    // 计算属性是基于它的依赖缓存的。 一个计算属性所依赖的数据发生变化时，它才会重新取值，所以
+    // text 只要不改变，计算属性也就不更新，例如 ：
+
+    //     这里的 Date.now（）不是响应式依赖，所以计算属性 now 不会更新。但是 methods 则不同，只要
+    //     重新渲染，它就会被调用，因此函数也会被执行 。
+    // 使用计算属性还是 methods 取决于你是否需要缓存，当遍历大数组和做大量计算时，应当使用
+    //     计算属性，除非你不希望得到缓存。
+
+
+    // 我们为什么需要缓存？假设我们有一个性能开销比较大的的计算属性 A，它需要遍历一个巨大的数组并做大量的计算。
+    // 然后我们可能有其他的计算属性依赖于 A 。
+    // 如果没有缓存，我们将不可避免的多次执行 A 的 getter！如果你不希望有缓存，请用方法来替代。
+
+</script>
+</body>
+</html>

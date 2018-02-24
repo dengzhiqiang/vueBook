@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.2 绑定值-单选按钮：</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <input type="radio" name="" v-model="picked" :value="val">选择
+
+    <h2>{{ picked }}</h2>
+    <h2>{{ val }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    // <option＞是备选工页，如果含有 value 属性 ， v-model 就会优先匹配 value 的值 ： 如果没有 ， 就会
+    // 直接匹配＜option＞的 text，比如选中第二项时 ， selected 的值是 js ， 而不是 JavaScript
+
+    // 在选中 时， app.picked === app .value ， 值都是 123 。
+    var app = new Vue({
+        el: '#app',
+        data: {
+            picked: false,
+            val:123
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

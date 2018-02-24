@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2.1.2 生命周期</title>
+</head>
+<body>
+<!--挂载点-->
+<div id="app">
+    <input type="text" v-model="name" placeholder="你的名字！">
+    <h1>{{ name }}</h1>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+
+    //    Vue 的生命周期钩子与之类似，比较常用的有：
+    //    • created 实例创建完成后调用，此阶段完成了数据的观测等，但尚未挂载， $el 还不可用。
+    //          需要初始化处理一些数据时会比较有用，后面章节将有介绍．
+
+    //    • mounted el 挂载到实例上后调用，一般我们的第一个业务逻辑会在这里开始 。
+    //    • beforeDestroy 实例销毁之前调用。主要解绑一些使用 addEventListener 监听的事件等。
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            name: 'deng'
+        },
+        created: function () {
+            console.dir(this);
+            console.dir(this.name);
+            console.dir(this.$el); // undefined
+        },
+        mounted: function () {
+            console.dir(this.$el);
+        }
+    });
+
+</script>
+</body>
+</html>

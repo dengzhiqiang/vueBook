@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.2.2 单向数据流</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+
+    <my-componnet :parent-data="[1,2,3]"></my-componnet>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    // 业务中会经常遇到两种需要改变 prop 的情况，一种是父组件传递初始值进来，子组件将它作
+    // 为初始值保存起来，在自己的作用域下可以随意使用和修改。这种情况可以在组件 data 内再声明
+    // 一个数据，引用父组件的 prop
+
+    // 另一种情况就是 prop 作为需要被转变的原始值传入。这种情况用计算属性就可以了 ， 示例代
+    // 码如下
+
+    // 注意，javascript如且是引用类型，指向同一个内存空间，所以 props 是对
+    // 象和数组时，在子组件内改变是会影响父组件的。
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        components: {
+            'my-componnet': {
+                template: '<h2> {{ dataParentData }} {{ mData }}</h2>',
+                props: ['parentData'],
+                data: function () {
+                    return {
+                        dataParentData: this.parentData
+                    };
+                },
+                computed: {
+                    mData: function () {
+                        return this.parentData += '★★★★'// 有报错！
+                    }
+                }
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

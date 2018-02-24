@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.5.3 动态组件-2</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+
+    <component :is="currentView"></component>
+    <button @click="changeView('A')">A组件</button>
+    <button @click="changeView('B')">B组件</button>
+    <button @click="changeView('C')">C组件</button>
+</div>
+
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    // Vue.js 提供了 一个特殊的元素＜component> 用来动态地挂载不同的组件 ， 使用 i s 特性来选择
+    // 要挂载的组件
+
+    var A = {
+        template: '<h2>我是A</h2>'
+    };
+    var B = {
+        template: '<h1>我是B</h1>'
+    };
+    var C = {
+        template: '<h3>我是C</h3>'
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            currentView: A
+        },
+        methods: {
+            changeView: function (str) {
+                this.currentView = str;
+            }
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

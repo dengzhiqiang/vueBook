@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2.1.2 生命周期3-v-pre</title>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1 v-pre>{{ name }}</h1>
+    <h1 v-text="name"></h1>
+    <h1 v-html="name"></h1>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+
+    // 如果有的时候就是想输出 HTML，而不是将数据解释后的纯文本，可以使用 v-html:
+    // 如果将用户产生的内容使用 v-html 输出后，有可能导致 xss 攻击，所以要在服务端对用户提交的内容进行
+    // 处理， 一般可将尖括号“＜ ＞”转义。
+
+//     如果想显示｛｛｝｝标签，而不进行替换 ， 使用 v-pre 即可跳过这个元素和它的子元素的编译过程，
+// 例如 ：
+    
+    var app = new Vue({
+        el: '#app',
+        data: {
+            name: '<button>我是按钮！</button>'
+        }
+    });
+
+
+</script>
+</body>
+</html>

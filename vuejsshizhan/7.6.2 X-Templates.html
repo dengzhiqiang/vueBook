@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.6.2 X-Templates</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+
+    <aaa></aaa>
+
+    <!--模板文件-->
+    <script type="text/x-template" id="my-component">
+        <div id="wrapper">
+            <h2>我是text/x-template</h2>
+        </div>
+    </script>
+</div>
+
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+
+<script>
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            status: false
+        },
+        components: {
+            'aaa': {
+                template: '#my-component'
+            }
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

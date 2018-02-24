@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2.1.1 实例与数据-Vue 实例本身也代理了 data 对象里的所有属性-2</title>
+</head>
+<body>
+<!--挂载点-->
+<div id="app">
+    <input type="text" v-model="name" placeholder="你的名字！">
+    <h1>{{ name }}</h1>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    var begin = '我是初始的值！';
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            name: begin/*这里必须要有字段name才行，否则会报错*/
+        }
+    });
+
+
+    //     在 input 标签上，有一个 v-model 的指令，它的值对应于
+    //     我们创建的 Vue 实例的 data 选项中的 name 字段 ， 这就是 Vue 的数据绑定。
+    // 通过 Vue 实例的 data 选工页，可以声明应用内需要双向绑定的数据。建议所有会用到的数据都
+    //     预先在 data 内 声明，这样不至于将数据散落在业务逻辑中，难以维护。
+    // Vue 实例本身也代理了 data 对象里的所有属性，所以可以这样访问：
+
+    console.log(app.name);
+
+    setTimeout(function () {
+        // 基本数据类型的修改无法实现vue中内容的更改！
+        // 3秒后更改值
+        begin = '3秒后更改的值!';
+        console.log(begin);
+
+    }, 3000)
+</script>
+</body>
+</html>

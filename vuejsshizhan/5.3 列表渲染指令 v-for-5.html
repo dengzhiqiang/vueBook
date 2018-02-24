@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.3 列表渲染指令 v-for-5</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <ul>
+        <!--v-for 还可以迭代整数 ： ．-->
+        <li v-for="n in 10">{{ n }}</li>
+    </ul>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {}
+    });
+</script>
+</body>
+</html>

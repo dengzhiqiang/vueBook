@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.4 方法与事件-$event-修饰符</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <a href="https://www.baidu.com" @click="handleClick('禁止打开！',$event)">打开网页</a>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    // 在上例使用的 event.pr巳ventDefault（）也可以用 Vue 事件的修饰符来实现，在＠绑定的事件后加
+    // 小圆点“．”，再跟一个后缀来使用修饰符。 Vue 支持以下修饰符：
+
+    //
+    // • .stop
+    // • .prevent
+    // • .capture
+    // • .self
+    // • .once
+</script>
+
+<!--具体用法如下：-->
+<!--＜ ！一阻止单击事件 冒泡 一〉-->
+<!--<a @click.stop=”handle " ></a>-->
+
+<!--〈！一提交事件不再重载页面 一〉-->
+<!--<form @submit.prevent="handle” ></ form>-->
+
+<!--〈 ！一修饰符可以串联一 〉-->
+<!--<a @click.stop.prevent=” handle ” ></a>-->
+
+<!--〈 ！一只有修饰符一〉-->
+<!--<form @submit . prevent></form>-->
+
+<!--〈 ！一添加事件侦听器时使用事件捕获模式一〉-->
+<!--<div @click . capture=”handle” >... </div>-->
+
+<!--〈 ！一只 当事件在该元素本身（而不是子元素） 触发时触发回调一〉-->
+<!--<div @click.self=” handle” >... </div>-->
+
+<!--＜ ！一只触发一次，组件同样适用一〉-->
+<!--<div @click.once=” handle” >... </div>-->
+
+<!--在表单元素上监昕键盘事件时，还可以使用按键修饰符，比如按下具体某个键时才调用方法：-->
+<!--＜ ！一只有在 keyCode 是 13 时调用 vm . submit （）一〉-->
+<!--<input @keyup.13 ＝“ subm工t ”〉-->
+
+<!--也可以自己配置具体按键：-->
+<!--Vue . config .keyCodes .fl = 112;-->
+<!--／／全局定义后，就可以使用自 keyup. fl-->
+
+
+<!--除了具体的某个 keyCode 外， Vue 还提供了一些快捷名称，以下是全部的别名：-->
+<!--• .enter-->
+<!--• .tab-->
+<!--• .delete （捕获“删除”和“退格”键）-->
+<!--• .esc-->
+<!--• .space-->
+<!--• .up-->
+<!--• .down-->
+<!--• .left-->
+<!--• .right-->
+
+<!--这些按键修饰符也可以组合使用，或和鼠标一起配合使用：-->
+<!--• .ctrl-->
+<!--• .alt-->
+<!--• .shift-->
+<!--• .meta (Mac 下是 Command 键， Windows 下是窗口键）-->
+<!--例如：-->
+
+
+<!--例如：-->
+<!--<! Shift + S  >-->
+<!--<input @keyup.shift . 83=”handleSave”>-->
+
+<!-- Ctrl + Click -->
+<!--<div @click.ctrl=”doSomething”>Do something</div>-->
+<!--以上就是事件指令 v-on 的基本内容，在第 7 章的组件中，我们还将介绍用 v-on 来绑定自定义事件-->
+
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.6.3 手动挂载实例</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1>这里能有内容吗？</h1>
+    <!--模板文件-->
+    <script type="text/x-template" id="my-component">
+        <div id="wrapper">
+            <h2>我是text/x-template</h2>
+        </div>
+    </script>
+</div>
+
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+
+<script>
+
+    //    我们现在所创建的实例都是通过 new Vue（）的形式创建出来的 。在一些非常特殊的情况下，我
+    //    们需要动态地去创建 Vue 实例， Vue 提供了 Vue.extend 和$mount 两个方法来手动挂载一个实例。
+    //Vue.extend 是基础 Vue 构造器，创建一个“子类”，参数是一个包含组件选项的对象。
+
+    //如果 Vue 实例在实例化时没有收到 el 选项，它就处于“未挂载”状态，没有关联的 DOM 元
+    //    素。可以使用 $mount（）手动地挂载一个未挂载的实例。这个方法返回实例自身，因而可以链式调用
+    //    其他实例方法。示例代码如下：
+
+    var Com = Vue.extend({
+        template: '#my-component'
+    });
+
+    // #app里面的内容会被替换为组件里面的内容
+    // 和下面的new Com是等价的
+    // new Com().$mount('#app');
+
+    new Com({
+        el:'#app'
+    });
+
+
+</script>
+
+
+</body>
+</html>

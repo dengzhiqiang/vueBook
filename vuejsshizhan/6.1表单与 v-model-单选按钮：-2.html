@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.1表单与 v-model-单选按钮：-2</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <input type="radio" name="" v-model="picked" value="html">
+    <input type="radio" name="" v-model="picked" value="js">
+    <input type="radio" name="" v-model="picked" value="css">
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    // 数据 picked 的值与单选按钮的 value 值一致时，就会选中该项
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            picked: 'js'
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

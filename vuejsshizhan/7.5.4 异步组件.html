@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.5.4 异步组件</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+
+    <child-component></child-component>
+    <aaa></aaa>
+
+</div>
+
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    //     当你的工程足够大 ， 使用的组件足够多时 ， 是时候考虑下性能问题了 ， 因为一开始把所有的
+    //     组件都加载是没必要的一笔开销。好在 Vue.js 允许将组件定义为一个工厂函数，动态地解析组件。
+    // Vue. 只在组件需要渲染时触发工厂函数 ， 并且把结果缓存起来，用于后面的再次渲染。例
+
+
+    //     工厂函数接收一个 resolve 回调，在收到从服务器下载的组件定义时调用。也可以调用
+    //     reject(reason）指示加载失败。这里 setTimeout 只是为了演示异步，具体的下载逻辑可以自己决定，
+    // 比如把组件配置写成一个对象配置，通过 Ajax 来请求，然后调用 resolve 传入配置选项。
+    // 在进阶篇里，我们还会介绍主流的打包编译工具 webpack 和 .vue 单文件的用法，更优雅地实
+    //     现异步组件（路由〉。
+
+    Vue.component('child-component', function (resolve, reject) {
+        window.setTimeout(function () {
+            // 将组件定义传入 resolve 回调函数
+            resolve({
+                template: '<h2>我是异步加载的！</h2>'
+            });
+        }, 2000);
+
+    });
+    var app = new Vue({
+        el: '#app',
+        components: {
+            'aaa': function (resolve, reject) {
+                window.setTimeout(function () {
+                    // 将组件定义传入 resolve 回调函数
+                    resolve({
+                        template: '<h2>我是异步加载的22222！</h2>'
+                    });
+                }, 2000);
+
+            }
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.2.2 v-show</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <button @click='toggles'>切换模板</button>
+    <div v-show="status === true" style="height:30px;background: darkmagenta"></div>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // v-show 的用法与 v-if 基本一致，只不过 v-show 是改变元素的 css 属性 display。当 v-show 表
+    // 达式的值为 false 时， 元素会隐藏，查看 DOM 结构会看到元素上加载了内联样式 display : none;,
+    // v-show不能在<template>上面使用
+    var app = new Vue({
+        el: '#app',
+        data: {
+            status: true
+        },
+        methods: {
+            toggles: function () {
+                this.status = this.status ? false : true;
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.4.3 slot 用法</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <my-componnet></my-componnet>
+    <my-componnet>
+        <p>我是要替换位置slot的元素</p>
+        <p>我是要替换位置slot的元素</p>
+    </my-componnet>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    // 注意，子组件＜s lot> 内的备用内容，它的作用域是子组件本身．
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '我是父组件的data内容！！！！！！！！！！！！！！！！！！！！！！！'
+        },
+        methods: {},
+        components: {
+            'my-componnet': {
+                template:
+                    '<div>\
+                        <slot>\
+                             <p>如果父组件没有插入内容，我将作为默认出现</p>\
+                        </slot>\
+                    </div>\
+                    ',
+                data: function () {
+                    return {
+                        comData: '我是子组件的data内容！'
+                    };
+                }
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

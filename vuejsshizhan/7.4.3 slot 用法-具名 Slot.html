@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.4.3 slot 用法-具名 Slot</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <my-componnet>
+        <!--就相当于把这块的内容替换对应的slot-->
+        <h2 slot="header">标题</h2>
+
+        <p>我是要替换位置slot的元素</p>
+        <p>我是要替换位置slot的元素</p>
+
+        <h2 slot="footer">底部</h2>
+    </my-componnet>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    // 注意，子组件＜s lot> 内的备用内容，它的作用域是子组件本身．
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '我是父组件的data内容！！！！！！！！！！！！！！！！！！！！！！！'
+        },
+        methods: {},
+        components: {
+            'my-componnet': {
+                template:
+                    '<div>\
+                        <div>\
+                            <slot name="header">\
+                                 <p>header</p>\
+                            </slot>\
+                        </div>\
+                        <div>\
+                            <slot></slot>\
+                        </div>\
+                        <div>\
+                            <slot name="footer">\
+                                <p>footer</p>\
+                            </slot>\
+                        </div>\
+                    </div>\
+                        ',
+                data: function () {
+                    return {
+                        comData: '我是子组件的data内容！'
+                    };
+                }
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

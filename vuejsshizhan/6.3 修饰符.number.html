@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.3 修饰符.number</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <input type="text" name="" v-model.number="message">
+
+
+    <h2>{{ message }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    // 使用修饰符.number 可以将输入转换为 Number 类型，否则虽然你输入的是数字，但它的类型
+    // 其实是 String，比如在数字输入框时会比较有用，示例代码如下：
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'a142'
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

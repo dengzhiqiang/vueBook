@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2.3 语法糖</title>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+
+
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //     语法糖是指在不影响功能的情况下 ， 添加某种方法实现同样的效果 ， 从而方便程序开发。
+    // Vue扣 的 v-bind 和 v-on 指令都提供了语法糖 ， 也可以说是缩写 ， 比如 v-bind ， 可以省略 v-bind,
+    //         直接写一个冒号 “ ：”
+
+    //     <a v-bind : href＝ ” url ” 〉链接＜ la>
+    //     <img v-bind : src=” imgUrl ”>
+
+    //     ＜ ！一 缩写为 一 〉
+    //     <a : href＝ ” url ”〉链接＜ la>
+    //     <img : src=” imgUrl ”>
+
+
+    //     v- on 可以直接用 “ ＠ ” 来缩写 ：
+    //     <button v- on : click＝ ” handleClose ”＞点击隐藏＜／button>
+    // 〈 ！ 一缩写为 一＞
+    //     <button @click＝ ”handleClose ”＞点击隐藏＜／button>
+</script>
+</body>
+</html>

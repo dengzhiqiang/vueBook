@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.3.2 使用 v-model</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <!--其实都是在这里获取的传的数据-->
+    <my-componnet v-model="total"></my-componnet>
+    <h2>{{ total }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    // 仍然是点击按钮加 1 的效果 ， 不过这次组件$emit（）的事件名是特殊的 input， 在使用组件的父
+    // 级，井没有在＜my-component>上使用＠input= “ handler”，而是直接用了 v-model 绑定的一个数据
+    // total 。这也可以称作是一个语法糖，因为上面的示例可以间接地用自定义事件来实现：
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {},
+        components: {
+            'my-componnet': {
+                template: '<div><button @click="handleIncrese">增加</button></div>',
+                data: function () {
+                    return {
+                        counter: 1
+                    };
+                },
+                methods: {
+                    handleIncrese: function () {
+                        this.counter++;
+                        this.$emit('input', this.counter);
+                    }
+                }
+
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

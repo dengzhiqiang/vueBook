@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.3.2 使用 v-model-3-双向绑定</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <!--其实都是在这里获取的传的数据-->
+    <my-componnet v-model="total"></my-componnet>
+    <button @click="pulsValue">增加★★★★</button>
+    <h2>{{ total }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    // 实现这样一个具有双向绑定的 v-model 组件要满足下面两个要求 ：
+    // . 接收一个 value 属性。
+    // • 在有新的 value 时触发 input 事件。
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            total: 'bbb'
+        },
+        methods: {
+            pulsValue: function () {
+                this.total += '★★★★★★！';
+            }
+        },
+        components: {
+            'my-componnet': {
+                template: '<div><input type="text" :value="value" @input="handleIncrese"></div>',
+                props: ['value'],
+                data: function () {
+                    return {
+                        counter: 'a'
+                    };
+                },
+                methods: {
+                    handleIncrese: function () {
+                        this.$emit('input', this.value);
+                    }
+                }
+
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

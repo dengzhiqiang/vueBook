@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.2 使用 props 传递数据-2</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <input type="text" name="" v-model="message">
+
+    <my-componnet :parent-data="message"></my-componnet>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    //     组件不仅仅是要把模板的内容进行复用，更重要的是组件间要进行通信。通常父组件的模板
+    //     中包含子组件，父组件要正向地向子组件传递数据或参数，子组件接收到后根据参数的不同来渲染
+    //     不同的内容或执行操作。这个正向传递数据的过程就是通过 props 来实现的。
+
+    // 在组件中，使用选项 props 来声明需要从父级接收的数据， props 的值可以是两种， 一种是字
+    //     符串数组，一种是对象 ， 本小节先介绍数组的用法。比如我们构造一个数组，接收一个来自父级的
+    //     数据 message，并把它在组件模板中渲染
+
+    // props 中声明的数据与组件 data 函数 return 的数据主要区别就是 props 的来自父级，而 data 中
+    // 的是组件自己的数据，作用域是组件本身，这两种数据都可以在模板 template 及计算属性 computed
+    // 和方法 methods 中使用。上例的数据 message 就是通过 props 从父级传递过来的，在组件的自定义
+    // 标签上直接写该 props 的名称，如果要传递多个数据，在 props 数组中添加项即可。
+
+    // 由于 HT岛E 特性不区分大小写，当使用 DOM 模板时，驼峰命名 CcamelCase ）的 props 名称
+    // 要转为短横分隔命名 C kebab-case ）
+
+    // 有时候，传递的数据并不是直接写死的，而是来自父级的动态数据，这时可以使用指令 v-bind
+    // 来动态绑定 props 的值，当父组件的数据变化时，也会传递给子组件
+
+    // 这里用 v-model 绑定了父级的数据 parentMessage，当通过输入框任意输入时，子组件接收到
+    // 的 props “ message”也会实时响应，并更新组件模板。
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '   a142   '
+        },
+        components: {
+            'my-componnet': {
+                template: '<h2> {{ message }} {{ parentData }} </h2>',
+                data: function () {
+                    return {
+                        message: '子组件数据'
+                    };
+                },
+                props: ['parentData']
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

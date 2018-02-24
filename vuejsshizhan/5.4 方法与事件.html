@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.4 方法与事件</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <input type="text" v-model="shaixuan" @keyup="mshaixuan">
+    <h1>{{ shaixuan }}</h1>
+    <ul>
+        <!--v-for 还可以迭代整数 ： ．-->
+        <li v-for="item in mshaixuan">{{ item }}</li>
+    </ul>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 当你不想改变原数组，想通过一个数组的副本来做过滤或排序的显示时，可以使用计算属性
+    // 来返回过滤或排序后的数组
+    
+    // 在 Vue.js 2.x 中废弃了 l.x 中内直的 limitBy、 filterBy 和 orderBy 过滤器，统一改用计
+    // 算属性来实现。
+    var app = new Vue({
+        el: '#app',
+        data: {
+            shaixuan: '',
+            books: [
+                'apple',
+                'apple2',
+                'apple3',
+                'book',
+                'boo2',
+                'banner',
+                'banner2',
+                'top',
+                'left',
+                'right',
+                'right1'
+            ]
+        },
+        computed: {
+            mshaixuan: function () {
+                var _this = this;
+                return this.books.filter(function (value) {
+                    return value.match(new RegExp(_this.shaixuan))
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

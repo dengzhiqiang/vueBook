@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.5.1 递归组件</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <child-component :count="1"></child-component>
+</div>
+
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    // 组件在它的模板内可以递归地调用自己 ， 只要给组件设置 name 的选项就可以了
+    //     设置 name 后，在组件模板内就可以递归使用了，不过需要注意的是，必须给一个条件来限制
+    //     递归数量，否则会抛出错误 ： max stack size exceeded 。
+
+    // 组件递归使用可以用来开发一些具有未知层级关系的独立组件，比如级联选择器和树形控件
+    //     等，
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '我是父组件的data内容！！！！！！！！！！！！！！！！！！！！！！！',
+        },
+        methods: {},
+        components: {
+            'child-component': {
+                name: 'child-component',
+                props: ['count'],
+                template: '\
+                    <div>\
+                        <child-component :count="count + 1" v-if="count < 3">\
+                            <div>\
+                                <h2 >递归组件</h2>\
+                            </div>\
+                        </child-component>\
+                    </div>\
+                    '
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

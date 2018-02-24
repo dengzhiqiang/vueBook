@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.4.5 访问 slot.html</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <child-component>
+        <h2 slot="header">标题</h2>
+        <p>我是content</p>
+        <p>我是content</p>
+        <h2 slot="footer">底部</h2>
+    </child-component>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    // 在 Vue. l.x 中 ， 想要获取某个 slot 是比较麻烦的 ， 需要用 v-el 间接获取。而 Vue扣 2.x 提供
+    // 了用来访问被 slot 分发的内容的方法 $slots ， 请看下面的示例 ：
+
+
+    // 通过$slots 可以访问某个具名 slot, this .$slots.default 包括了所有没有被包含在具名 slot 中的节点
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '我是父组件的data内容！！！！！！！！！！！！！！！！！！！！！！！',
+        },
+        methods: {},
+        components: {
+            'child-component': {
+                props: ['parent'],
+                template: '\
+                    <div>\
+                        <slot name="header"></slot>\
+                        <slot></slot>\
+                        <slot name="footer"></slot>\
+                    </div>\
+                    ',
+                mounted: function () {
+                    var header = this.$slots.header;
+                    // 获取默认的
+                    var main = this.$slots.default;
+                    var footer = this.$slots.footer;
+
+                    console.dir(footer);
+                    console.dir(footer[0]);
+                    console.dir(footer[0].elm);
+                    console.dir(footer[0].elm.innerHTML);
+                }
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

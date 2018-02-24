@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2.2 指令与事件-v-on</title>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <div>
+        <button v-on:click="toggle">显示隐藏</button>
+    </div>
+    <a v-bind:href="url" v-if="show">
+        <img v-bind:src="src" alt="">
+    </a>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 指令（ Directives ）是 Vue扣 模板中最常用的一项功能，它带有前缀 v－， 在前文我们已经使用
+    // 过不少指令了，比如 v-if、 v-html 、 v-pre 等。指令的主要职责就是当其表达式的值改变时，相应地
+    // 将某些行为应用到 DOM 上，以 v『if 为例
+
+    // v-bind 的基本用途是动态更新 HTML 元素上的属性，比如 id 、 class 等，
+    // 示例中的链接地址与图片的地址都与数据进行了绑定，当通过各种方式改变数据时，链接和
+    // 图片都会自动更新
+
+    // 另一个非常重要的指令就是 v-on，它用来绑定事件监听器，这样我们就可以做一些交互了，
+    // 先来看下面的示例：
+
+    // 表达式可以是一个方
+    // 法名，这些方法都写在 Vue 实例的 methods 属性内，并且是函数的形式，函数内的 this 指向的是当
+    // 前 Vue 实例本身，因此可以直接使用 this.xxx 的形式来访问或修改数据，如示例中的 this.show =
+    //     false；把数据 show 修改为了 false
+    var app = new Vue({
+        el: "#app",
+        data: {
+            show: true,
+            url: 'https://www.baidu.com/',
+            src: '//www.baidu.com/img/bd_logo1.png'
+        },
+        methods: {
+
+            toggle: function () {
+                // 函数内的 this 指向的是当前 Vue 实例本身
+                this.show ? this.show = false : this.show = true;
+
+                // Vue. 将 methods 里的方法也代理了，所以也可以像访问 Vue 数据那样来调用方法：
+                this.alert();
+            },
+            alert: function () {
+                alert('ok!');
+            }
+        }
+    });
+</script>
+</body>
+</html>

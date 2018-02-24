@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.4 方法与事件-$event</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <a href="https://www.baidu.com" @click="handleClick('禁止打开！',$event)">打开网页</a>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //     在 methods 中定义了我们需要的方法供＠click 调用， 需要注意的是，＠click 调用的方法名后
+    //     可以不跟括号“（）” 。 此时，如果该方法有参数，默认会将原生事件对象 event 传入，可以尝试修
+    //     改为＠click＝”handleAdd”，然后在 handleAdd 内打印出 count 参数看看。在大部分业务场景中，如
+    //     果方法不需要传入参数，为了简便可以不写括号。
+
+    // 这种在 HTML 元素上监昕事件的设计看似将 DOM 与 JavaScript 紧藕合，违背分离的原理，实
+    //     则刚好相反。因为通过 HTML 就可以知道调用的是哪个方法，将逻辑与 DOM 解稿，便于维护。
+    // 最重要的是 ， 当 ViewModel 销毁时，所有的事件处理器都会自动删除，无须自己清理 。
+    // Vue 提供了 一个特殊变量$event，用于访问原生 DOM 事件，例如下面的实例可以阻止链接打开
+
+    var app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            handleClick: function (message, event) {
+                event.preventDefault();
+                window.alert(message);
+            }
+        }
+    });
+</script>
+</body>
+</html>

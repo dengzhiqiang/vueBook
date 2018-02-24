@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.3 列表渲染指令 v-for-1</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <button @click="addBook">增加书籍</button>
+    <ul>
+        <li v-for="item in books">{{ item.name }}</li>
+    </ul>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 当需要将一个数组遍历或枚举一个对象循环显示时，就会用到列表渲染指令 v-for。它的表达
+    // 式需结合 in 来使用，类似 item in items 的形式，看下面的示例 ：
+    var app = new Vue({
+        el: '#app',
+        data: {
+            books: [
+                {name: 'book1'},
+                {name: 'book2'},
+                {name: 'book3'},
+                {name: 'book4'}
+            ]
+        },
+        methods: {
+            addBook: function () {
+                this.books.push({name: 'book ★ ★' + new Date()});
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

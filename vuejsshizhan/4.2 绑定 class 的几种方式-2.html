@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4.2 绑定 class 的几种方式</title>
+    <style>
+        .error {
+            background: darkmagenta;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1 :class="{active:isActive,error:isError}">绑定 class 的几种方式</h1>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            isError: true
+        }
+    });
+    // 上面示例中，类名 active 依赖于数据 isActive，当其为 true 时， div 会拥有类名 Active，为 false
+    // 时则没有，所以上例最终渲染完的结果是：
+
+
+</script>
+</body>
+</html>

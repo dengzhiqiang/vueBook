@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2.2 指令与事件-v-if</title>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1 v-if="show">v-if</h1>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 指令（ Directives ）是 Vue扣 模板中最常用的一项功能，它带有前缀 v－， 在前文我们已经使用
+    // 过不少指令了，比如 v-if、 v-html 、 v-pre 等。指令的主要职责就是当其表达式的值改变时，相应地
+    // 将某些行为应用到 DOM 上，以 v『if 为例
+
+    // v-if 直接会从页面上移除节点
+    var app = new Vue({
+        el: "#app",
+        data: {
+            show: true
+        }
+    });
+</script>
+</body>
+</html>

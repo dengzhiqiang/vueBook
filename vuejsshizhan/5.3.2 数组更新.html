@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.3.2 数组更新</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <input type="text" v-model="shaixuan" @keyup="mshaixuan">
+    <h1>{{ shaixuan }}</h1>
+    <ul>
+        <!--v-for 还可以迭代整数 ： ．-->
+        <li v-for="item in books">{{ item }}</li>
+    </ul>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //     Vue 的核心是数据与视图的双向绑定，当我们修改数组时， Vue 会检测到数据变化，所以用
+    //     v-for 渲染的视图也会立即更新。 Vue 包含了 一组观察数组变异的方法，使用它们改变数组也会触
+    //     发视图更新：
+    //     • push()
+    // • pop()
+    // • shift()
+    // • unshi位（）
+    //     • splice()
+    // • s。此（）
+    //     • reverse()
+
+
+    /*下面的不会更改原来的数组*/
+    // filter()
+    // • concat()
+    // • slice()
+    var app = new Vue({
+        el: '#app',
+        data: {
+            shaixuan: '',
+            books: [
+                'apple',
+                'apple2',
+                'apple3',
+                'book',
+                'boo2',
+                'banner',
+                'banner2',
+                'top',
+                'left',
+                'right',
+                'right1'
+            ]
+        },
+        methods: {
+            mshaixuan: function () {
+                var _this = this;
+                this.books = this.books.filter(function (value) {
+                    return value.match(new RegExp(_this.shaixuan))
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

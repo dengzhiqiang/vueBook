@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.2.3 v-if 与 v-show 的选择</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <button @click='toggles'>切换模板</button>
+    <div v-show="status === true" style="height:30px;background: darkmagenta"></div>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // v-if 和 v-show 具有类似的功能，不过 v-if 才是真正的条件渲染，它会根据表达式适当地销毁
+    // 或重建元素及绑定的事件或子组件。若表达式初始值为 false，则一开始元素／组件并不会渲染，只
+    // 有当条件第一次变为真时才开始编译。
+
+    // 而 v-show 只是简单的 css 属性切换，无论条件真与否，都会被编译。相比之下， v-if 更适合
+    //     条件不经常改变的场景，因为它切换开销相对较大，而 v-show 适用于频繁切换条件
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            status: true
+        },
+        methods: {
+            toggles: function () {
+                this.status = this.status ? false : true;
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

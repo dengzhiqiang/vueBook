@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3.2 计算属性用法</title>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1>价格是：{{ getPrice }}</h1>
+
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //     通过上一章的介绍，我们己经可以搭建出一个简单的 Vue 应用，在模板中双向绑定一些数据
+    //     或表达式了。但是表达式如果过长，或逻辑更为复杂时，就会变得雕肿甚至难以阅读和维护，比如：
+    //     <div>
+    //     {{ text.split ( ’,’ ) •reverse () . join (’,’)}}
+    //     </div>
+    //     这里的表达式包含 3 个操作，并不是很清晰，所以在遇到复杂的逻辑时应该使用计算属性。
+    // 上例可以用计算属性进行改写：
+
+    // 所有的计算属性都以函数的形式写在 Vue 实例内的 computed 选项内，最终返回计算后的结果。
+
+    // 在一个计算属性里可以完成各种复杂的逻辑，包括运算、函数调用等，只要最终返回一个结
+    // 果就可以。除了上例简单的用法，计算属性还可以依赖多个 Vue 实例的数据，只要其中任一数据
+    // 变化，计算属性就会重新执行，视图也会更新。例如，下面的示例展示的是在购物车内两个包裹的
+    // 物品总价：
+    var app = new Vue({
+        el: '#app',
+        data: {
+            package1: [
+                {
+                    name: 'apple',
+                    num: 2,
+                    price: 10
+                },
+                {
+                    name: 'apple',
+                    num: 3,
+                    price: 11
+                }
+            ],
+            package2: [
+                {
+                    name: 'apple',
+                    num: 1,
+                    price: 10
+                },
+                {
+                    name: 'apple',
+                    num: 10,
+                    price: 11
+                }
+            ],
+            price: 0
+        },
+        computed: {
+            getPrice: function () {
+                var price = 0; // 价格
+                var package1 = this.package1;
+                var package2 = this.package2;
+
+
+                for (var i = 0, len = package1.length; i < len; i++) {
+                    console.log(package1[i]['num']);
+                    price += package1[i]['num'] * package1[i]['price']
+                }
+
+                for (var j = 0, len2 = package2.length; j < len2; j++) {
+                    price += package2[j]['num'] * package2[j]['price']
+                }
+
+                return price;
+            }
+        }
+    });
+
+    //     当 packagel 或 package2 中的商品有任何变化，比如购买数量变化或增删商品时，计算属性
+    //     prices 就会自动更新 ， 视图中的总价也会自动变化 。
+    // 每一个计算属性都包含－个 getter 和一个 setter，我们上面的两个示例都是计算属性的默认用
+    //     法 ， 只是利用了 getter 来读取。在你需要时，也可以提供一个 setter 函数 ， 当手动修改计算属性的
+    //     值就像修改一个普通数据那样时，就会触发 setter 函数，执行一些自定义的操作
+    setInterval(setInterval(function () {
+        app.package1[0]['num']++;
+    }, 2000))
+
+
+</script>
+</body>
+</html>

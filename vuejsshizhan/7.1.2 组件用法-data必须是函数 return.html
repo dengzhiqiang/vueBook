@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.1.2 组件用法-data必须是函数 return</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <table>
+        <tr is="my-componnet"></tr>
+    </table>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+    // 组件与之类似，需要注册后才可以使用。注册有全局注册和局部注册两种方式。全局注册后，
+    // 任何 Vue 实例都可以使用。
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '   a142   '
+        },
+        components: {
+            'my-componnet': {
+                data: function () {
+                    return {
+                        message: '组件内容！'
+                    };
+                },
+                template: '<tr><td>{{ message }}</td></tr>'
+            }
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "vuejsshizhan",
+  "version": "1.0.0",
+  "description": "http://download.csdn.net/download/niehanmin/10240181\r     vue.js实战",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.5.13"
+  }
+}

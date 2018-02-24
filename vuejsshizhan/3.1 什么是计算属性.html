@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3.1 什么是计算属性</title>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1>原数据：{{ text }}</h1>
+    <h1>更改后的数据：{{ price }}</h1>
+
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    //     通过上一章的介绍，我们己经可以搭建出一个简单的 Vue 应用，在模板中双向绑定一些数据
+    //     或表达式了。但是表达式如果过长，或逻辑更为复杂时，就会变得雕肿甚至难以阅读和维护，比如：
+    //     <div>
+    //     {{ text.split ( ’,’ ) •reverse () . join (’,’)}}
+    //     </div>
+    //     这里的表达式包含 3 个操作，并不是很清晰，所以在遇到复杂的逻辑时应该使用计算属性。
+    // 上例可以用计算属性进行改写：
+
+    // 所有的计算属性都以函数的形式写在 Vue 实例内的 computed 选项内，最终返回计算后的结果。
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            text: 'abc,123',
+            // price:'我是data price' /*[Vue warn]: The computed property "price" is already defined in data.*/
+        },
+        computed: {
+            price: function () {
+                return this.text.split(',').reverse().join(',');
+            }
+        }
+    });
+
+    console.log(app.price);
+</script>
+</body>
+</html>

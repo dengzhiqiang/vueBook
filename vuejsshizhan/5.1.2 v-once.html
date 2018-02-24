@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.1.2 v-once</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1>{{ message }}</h1>
+    <h1 v-once>{{ message }}</h1>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // v-once 也是一个不需要表达式的指令，作用是定义它的元素或组件只渲染一次，包括元素或
+    // 组件的所有子节点。首次渲染后，不再随数据的变化重新渲染，将被视为静态内容，例如：
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'message!'
+        }
+    });
+
+    setInterval(function () {
+        app.message += '!!'
+    }, 1000);
+
+
+</script>
+</body>
+</html>

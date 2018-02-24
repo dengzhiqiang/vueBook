@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.3 修饰符</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <input type="text" name="" v-model.lazy="message">
+    <input type="text" name="" v-model="message">
+
+
+    <h2>{{ message }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    // 与事件的修饰符类似， v-model 也有修饰符，用于控制数据同步的时机
+    // 在输入框中， v-model 默认是在 input 事件中同步输入框的数据（除了提示中介绍的中文输入
+    // 法情况外），使用修饰符 .lazy 会转变为在 change 事件中同步，示例代码如下：
+
+    // 这时， message 并不是实时改变的，而是在失焦或按回车时才更新。
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.2.3 数据验证</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+
+    <my-componnet :parent-data="[1,2,3]"></my-componnet>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    //     我们上面所介绍的 props 选项的值都是一个数组，一开始也介绍过，除了数组外，还可以是对
+    //     象，当 prop 需要验证时，就需要对象写法。
+    // 一般当你的组件需要提供给别人使用时，推荐都进行数据验证，比如某个数据必须是数字类
+    //     型，如果传入字符串，就会在控制台弹出警告。
+    // 以下是几个 prop 的示例 ：
+
+    //     type 也可以是一个自定义构造器，使用 instanceof 检测。
+    // 当 prop 验证失败时，在开发版本下会在控制台抛出一条警告。
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        components: {
+            'my-componnet': {
+                template: '<h2> {{ dataParentData }} {{ mData }}</h2>',
+                props: {
+                    propA: Number, // 必须是数字
+                    propB: [String, Number], // ／必须是字符串或数字类型
+                    propC: { // 布尔值，如果没有定义，默认值就是 true
+                        type: Boolean,
+                        default: true
+                    },
+                    propD: {// 数字，而且是必传
+                        type: Number,
+                        required: true
+                    },
+                    propE: { // 如果是数组或对象，默认值必须是一个函数来返回
+                        type: Array,
+                        default: function () {
+                            return [];
+                        }
+                    },
+                    propF: { // 自定义一个验证函数
+                        validator: function (value) {
+                            return value > 10;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

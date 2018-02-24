@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.3.3 非父子组件通信</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <button @click="sendCom">父组件将数据发送给子组件</button>
+    <my-componnet></my-componnet>
+    <h2>{{ message }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    //     在 Vue. 2.x 中 ， 推荐使用一个空的 Vue 实例作为中央事件总线（ bus ），也就是一个中介 。
+    // 为了更形象地了解它，我们举一个生活中的例子。
+
+    // 比如你需要租房子 ， 你可能会找房产中介来登记你的需求 ， 然后中介把你的信息发给满足要
+    //     求的出租者，出租者再把报价和看房时间告诉中介，由中介再转达给你，整个过程中 ， 买家和卖家
+    //     并没有任何交流，都是通过中间人来传话的 。
+
+    // 或者你最近可能要换房了 ， 你会找房产中介登记你的信息 ， 订阅与你找房需求相关的资讯，
+    // 一旦有符合你的房子出现时，中介会通知你，并传达你房子的具体信息 。
+    // 这两个例子中 ， 你和出租者担任的就是两个跨级的组件，而房产中介就是这个中央事件总线
+    //     ( bus ） 。 比如下面的示例代码 ：
+
+    var bus = new Vue();
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'bbb'
+        },
+        methods: {
+            sendCom: function () {
+                // 将数据发送给子组件
+                bus.$emit('onParent', '来自父组件的内容!!!★★★★★！！');
+            }
+        },
+        mounted: function () {
+            var _this = this;
+            // 在实例初始化时，监听来自 bus 实例的事件
+            bus.$on('onMessage', function (msg) {
+                _this.message = msg;
+            });
+
+
+        },
+        components: {
+            'my-componnet': {
+                template: '<div><button @click="handleIncrese">获取子组件的内容</button><strong>{{ comData }}</strong></div>',
+                data: function () {
+                    return {
+                        comData: 'a'
+                    };
+                },
+                methods: {
+                    handleIncrese: function () {
+                        bus.$emit('onMessage', '来自子组件的内容!!!');
+                    },
+                    handleReduce: function () {
+
+
+                    }
+                },
+                mounted: function () {
+                    var _this = this;
+                    // 获取来自父组件的内容
+                    bus.$on('onParent', function (msg) {
+                        _this.comData = msg;
+                    });
+                }
+
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.2.1 v-if、 v-else-if、 v-else-3复用</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <button @click='toggles'>切换模板</button>
+    <template v-if="type === 'username'">
+        <div>
+            <label for="">用户名</label>
+            <input type="text" placeholder="用户名">
+        </div>
+    </template>
+
+    <template v-else="type === 'email'">
+        <div>
+            <label for="">邮箱</label>
+            <input type="text" placeholder="邮箱">
+        </div>
+    </template>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // v-else-if 要紧跟 v-if, v-else 要紧 Rli! v-else-if 或 v-if，表达式的值为 真时 ， 当前元素／组件及所
+    // 有子节点将被渲染，为假时被移除。如果一次判断的是多个元素，可以在 Vue扣内置的＜template>
+    // 元素上使用条件指令，最终渲染的结果不会包含该元素，例如：
+
+    // 给两个＜input>元素都增加 key 后 ， 就不会复用了，切换类型时键入的内容也会被删除，不过
+    // <label＞元素仍然是被复用的，因为没有添加 key 属性。
+
+    // 不是很理解复用
+    var app = new Vue({
+        el: '#app',
+        data: {
+            type: 'username'
+        },
+        methods: {
+            toggles: function () {
+                this.type = this.type === 'username' ? 'email' : 'username'
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

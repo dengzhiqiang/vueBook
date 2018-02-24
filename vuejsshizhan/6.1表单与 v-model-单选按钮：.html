@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.1表单与 v-model-单选按钮：</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <input type="radio" name="" id="" :checked="picked">
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    // 表单控件在实际业务较为常见，比如单选、多选、下拉选择、输入框等，用它们可以完成数
+    // 据的录入、校验、提交等。 Vue扣 提供了 v-model 指令，用于在表单类元素上双向绑定数据，例如
+    // 在输入框上使用时，输入的内容会实时映射到绑定的数据上。
+
+    // 使用 使用 属性，对于 拼音阶段， v-model v-model 在Vue 后，表羊控件显示的值只依赖所绑定的数据，不再关心初始化时的 ＜时，如果是用中文输入法输入中文，一般在没有选定饲组前，也就是在 textare 是不会更新数据的，当敲下汉字时才会触发史新 a></textarea> 之间插入的值，也不会生效． 。 如果希望总是实时 value
+    // 更新，可以用＠input 来替代 v-model . 事实上， v-model 也是一个特殊的语法糖，只
+    // 不过它会在不同的表单上智能处理。例如下面的示例：
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            picked: true
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

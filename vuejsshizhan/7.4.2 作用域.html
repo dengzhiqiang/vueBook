@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.4.2 作用域</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <button @click="sendCom">我要获取子组件的data数据！</button>
+    <my-componnet ref="refA"></my-componnet>
+    <my-componnet ref="refB"></my-componnet>
+    <my-componnet ref="refC"></my-componnet>
+    <h2>{{ message }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    //     当子组件较多时 ， 通过 this.$children 来一一遍历出我们需要的一个组件实例是比较困难的，
+    // 尤其是组件动态渲染时，它们的序列是不固定的。 Vue 提供了子组件索引的方法，用特殊的属性 ref
+    //     来为子组件指定一个索引名称，示例代码如下：
+
+
+    // 在父组件模板中，子组件标签上使用 ref 指定一个名称，井在父组件内通过 this.$refs 来访问指
+    // 定名称的子组件
+
+    // 与 Vue l.x 不同的是， Vue 2.x 将 v-el 和 v-ref 合并为了 ref, Vue 会自动去判断是普通标签还
+    // 是组件 。 可以尝试补全下面的代码，分别打印出两个 ref看看都是什么
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '我是父组件的data内容！！！！！！！！！！！！！！！！！！！！！！！'
+        },
+        methods: {
+            sendCom: function () {
+                // 我要获取子组件的data数据
+                console.dir(this.$children);
+                console.dir(this.$refs);
+                console.dir(this.$refs.refA);
+            }
+        },
+        components: {
+            'my-componnet': {
+                template: '<div><button @click="handleIncrese">获取父组件的内容</button><strong>{{ comData }}</strong></div>',
+                data: function () {
+                    return {
+                        comData: '我是子组件的data内容！'
+                    };
+                },
+                methods: {
+                    handleIncrese: function () {
+                        this.comData = this.$parent.message;
+                    }
+
+                }
+
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

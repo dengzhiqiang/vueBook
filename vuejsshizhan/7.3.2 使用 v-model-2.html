@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.3.2 使用 v-model-2</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <!--其实都是在这里获取的传的数据-->
+    <my-componnet @input="getTotal"></my-componnet>
+    <h2>{{ total }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {
+            getTotal: function (val) {
+                this.total = val;
+            }
+        },
+        components: {
+            'my-componnet': {
+                template: '<div><button @click="handleIncrese">增加</button></div>',
+                data: function () {
+                    return {
+                        counter: 0
+                    };
+                },
+                methods: {
+                    handleIncrese: function () {
+                        this.counter++;
+                        this.$emit('input', this.counter);
+                    }
+                }
+
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

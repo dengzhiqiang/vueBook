@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7.3.1 自定义事件</title>
+    <style>
+        /*[kloʊk]*/
+        /*n.	披风，斗篷; 外套; 借口，掩饰; 覆盖物;*/
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <!--其实都是在这里获取的传的数据-->
+    <my-componnet @increse="getTotal" @reduce="getTotal"></my-componnet>
+    <h2>{{ total }}</h2>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+
+<script>
+
+    //     当子组件需要向父组件传递数据时，就要用到自定义事件。我们在介绍指令 v-on 时有提到，
+    // v-on 除了监昕 DOM 事件外，还可以用于组件之间的自定义事件。
+
+    // 如果你了解过 JavaScript 的设计模式一一观察者模式， 一定知道 dispatchEvent 和 addEventListener
+    //     这两个方法。 Vue 组件也有与之类似的一套模式，子组件用 $emit（）来触发事件，父组件用 $on（）来
+    //     监昕子组件的事件 。
+
+    // 父组件也可以直萨在子组件的自定义标签上使用 v-on 来监昕子组件触发的自定义事件，示例
+    //     代码如下：
+
+
+    //     上面示例中，子组件有两个按钮，分别实现加 1 和减 l 的效果 ， 在改变组件的 data “ counter"
+    //     后 ，通过$emit（）再把它传递给父组件 ， 父组件用 v-on:increase 和 v”on:reduce（示例使用的是语法糖）。
+    // $emit（）方法的第一个参数是自定义事件的名称 ， 例如示例的 increase 和 reduce 后面的参数都是要传
+    //     递的数据，可以不填或填写多个。
+
+    // 除了用 v-on 在组件上监听自定义事件外，也可以监昕 DOM 事件，这时可以用 .native 修饰符
+    //     表示监听的是一个原生事件，监听的是该组件的根元素，示例代码如下：
+    //     <my-component v-on:click .native=” handleClick” ></my- component>
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {
+            getTotal: function (val) {
+                this.total = val;
+            }
+        },
+        components: {
+            'my-componnet': {
+                template: '<div><button @click="handleIncrese">增加</button><button @click="handleReduce">减少</button></div>',
+                data: function () {
+                    return {
+                        counter: 1
+                    };
+                },
+                methods: {
+                    handleIncrese: function () {
+                        this.counter++;
+                        this.$emit('increse', this.counter);
+                    },
+                    handleReduce: function () {
+                        console.log(11);
+                        this.counter--;
+                        this.$emit('reduce', this.counter);
+                    }
+                }
+
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

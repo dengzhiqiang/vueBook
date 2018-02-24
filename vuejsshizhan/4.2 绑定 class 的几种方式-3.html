@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4.2 绑定 class 的几种方式-3</title>
+    <style>
+        .error {
+            background: darkmagenta;
+        }
+    </style>
+</head>
+<body>
+
+<!--挂载点-->
+<div id="app">
+    <h1 :class="classes">绑定 class 的几种方式</h1>
+</div>
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            isError: true
+        },
+        computed: {
+            classes: function () {
+                return {
+                    active: this.isActive,
+                    error: this.isError
+                };
+            }
+        }
+    });
+    // 当： class 的表达式过长或逻辑复杂时，还可以绑定一个计算属性，这是一种很友好和常见的用
+    // 法，一般当条件多于两个时，都可以使用 data 或 computed，例如使用计算属性
+    // 除了计算属性，你也可以直接绑定一个 object 类型的数据，或者使用类似计算属性的 methods
+
+</script>
+</body>
+</html>
