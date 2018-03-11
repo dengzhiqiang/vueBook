@@ -23,50 +23,22 @@
     <!--择器等 。-->
     <input-number v-model="value" :max="10" :min="0"></input-number>
 
+    <h1 style="background:deepskyblue">{{ value }}</h1>
+
     <!--模板文件-->
     <script type="text/x-template" id="my-component">
         <div class="input-number">
             <h2>我是text/x-template</h2>
+            <!--handChange 不用加括号 才会有event这个对象-->
+            <input type="text" :value="currentData" @change="handChange" @input="handChange">
         </div>
     </script>
 </div>
 
 
-<script src="./node_modules/vue/dist/vue.js"></script>
-
-
-<script>
-    Vue.component('input-number', {
-        template: '#my-component',
-        props: {
-            max: {
-                type: number,
-                default: Infinity
-            },
-            min: {
-                type: number,
-                default: -Infinity
-            },
-            value: {
-                type: number,
-                default: 0
-            }
-        },
-        data: function () {
-            return {
-                currentData: this.value
-            };
-        }
-    });
-
-    var app = new Vue({
-        el: '#app',
-        data: {
-            value: 5
-        }
-    });
-
-</script>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="number.js"></script>
+<script src="index.js"></script>
 
 
 </body>
